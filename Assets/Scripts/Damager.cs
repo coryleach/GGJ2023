@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Mirror;
 
 public class Damager : MonoBehaviour
 {
@@ -12,9 +11,9 @@ public class Damager : MonoBehaviour
         var enemy = col.gameObject.GetComponent<EnemyController>();
         if (enemy != null)
         {
-            enemy.GetHit(amount);
+
         }
-        NetworkServer.Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -22,8 +21,8 @@ public class Damager : MonoBehaviour
         var enemy = col.gameObject.GetComponent<EnemyController>();
         if (enemy != null)
         {
-            enemy.GetHit(amount);
+
         }
-        NetworkServer.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
