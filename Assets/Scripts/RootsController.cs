@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class RootsController : NetworkBehaviour
 {
@@ -12,6 +13,23 @@ public class RootsController : NetworkBehaviour
     private ProjectileWeapon weapon;
 
     private Targetable currentTarget = null;
+
+    [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
+    private string owner;
+    public string Owner => owner;
+
+    [SerializeField] private TMP_Text ownerLabel;
+
+    [Server]
+    public void SetPlayer(PlayerController player)
+    {
+        owner = player.Data.username;
+    }
+
+    private void OnOwnerChanged(string oldValue, string newValue)
+    {
+        ownerLabel.text = newValue;
+    }
 
     private void Start()
     {

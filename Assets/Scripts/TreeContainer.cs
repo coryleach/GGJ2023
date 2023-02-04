@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Mirror;
@@ -25,7 +26,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
     }
 
     [Server]
-    public void Spawn(PlayerController owner)
+    public void Spawn(PlayerController player)
     {
         //We need to check for this here now too because this code should run on server while command was executed from client
         if (currentRootsController != null)
@@ -34,9 +35,10 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
             return;
         }
 
-        Debug.Log("TreeContainer: Spawning!");
+        Debug.Log($"TreeContainer: Spawning for player {player.Data.username}!");
         currentRootsController = Instantiate(rootsPrefab);
         currentRootsController.transform.position = transform.position;
+        currentRootsController.SetPlayer(player);
         NetworkServer.Spawn(currentRootsController.gameObject);
     }
 }

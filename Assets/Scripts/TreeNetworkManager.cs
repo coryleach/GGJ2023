@@ -68,7 +68,9 @@ public class TreeNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
+
         Debug.Log("OnClientConnect");
+
         if (!NetworkClient.ready)
         {
             NetworkClient.Ready();
