@@ -65,12 +65,6 @@ public class EnemyController : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (currentNode == null)
-        {
-            Debug.Log("Node is null!");
-            //return;
-        }
-
         var dir = currentNodePosition - transform.position;
         _rigidbody2D.velocity = dir.normalized * moveSpeed;
     }

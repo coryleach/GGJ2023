@@ -1,8 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using Mirror;
 using TMPro;
-using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +17,15 @@ public class LoginMenu : Menu
     [SerializeField] private bool serverAndClient = false;
 
     private bool cancel = false;
-    private bool authFailed = false;
+
+    public enum AuthResult
+    {
+        Waiting,
+        Success,
+        Fail
+    }
+
+    private AuthResult authResult = AuthResult.Waiting;
 
     private void Start()
     {
@@ -27,9 +33,15 @@ public class LoginMenu : Menu
         {
             cancel = true;
         });
+
+        networkManager.authenticator.OnClientAuthenticated.AddListener(() =>
+        {
+            authResult = AuthResult.Success;
+        });
+
         (networkManager.authenticator as TreeAuthenticator)?.OnClientAuthFailed.AddListener((msg) =>
         {
-            authFailed = true;
+            authResult = AuthResult.Fail;
             errorText.text = msg;
         });
     }
@@ -83,8 +95,8 @@ public class LoginMenu : Menu
         networkManager.networkAddress = ip;
 
         cancel = false;
-        authFailed = false;
-
+        authResult = AuthResult.Waiting;
+        
         networkManager.StartClient();
 
         //Do nothing until client connects
@@ -97,7 +109,12 @@ public class LoginMenu : Menu
 
         if (NetworkClient.isConnected)
         {
-            if (NetworkClient.connection.isAuthenticated)
+            while (authResult == AuthResult.Waiting)
+            {
+                await Task.Yield();
+            }
+
+            if (authResult == AuthResult.Success)
             {
                 //We successfully connected
                 GoToGame();
@@ -113,7 +130,7 @@ public class LoginMenu : Menu
             return;
         }
 
-        if (!authFailed)
+        if (authResult != AuthResult.Fail)
         {
             //We simply failed to connect
             errorText.text = "Failed to connect to host";
