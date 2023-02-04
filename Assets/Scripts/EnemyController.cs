@@ -17,13 +17,13 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private Rigidbody2D _rigidbody2D = null;
 
-    
+
     private PathNode currentNode = null;
 
     [SyncVar]
     public Vector3 currentNodePosition = Vector3.zero;
 
-    public EnemyEvent OnDestroyed => new EnemyEvent();
+    public EnemyEvent OnDestroyed { get; } = new EnemyEvent();
 
     private void OnDestroy()
     {
@@ -54,12 +54,6 @@ public class EnemyController : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (currentNode == null)
-        {
-            Debug.Log("Node is null!");
-            //return;
-        }
-
         var dir = currentNodePosition - transform.position;
         _rigidbody2D.velocity = dir.normalized * moveSpeed;
     }

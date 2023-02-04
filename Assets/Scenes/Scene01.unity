@@ -734,7 +734,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2155674933754097078, guid: b81cbeab52d604f33b1d9c5f6f6854ca, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
@@ -2091,6 +2091,10 @@ PrefabInstance:
     - target: {fileID: 2137127527555454689, guid: 4f4649a589dc0472b8265775b1814c20, type: 3}
       propertyPath: m_Name
       value: Env
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137127527555454689, guid: 4f4649a589dc0472b8265775b1814c20, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4879702424332040159, guid: 4f4649a589dc0472b8265775b1814c20, type: 3}
       propertyPath: m_RootOrder
