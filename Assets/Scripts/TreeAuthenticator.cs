@@ -1,40 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-/*
-    Documentation: https://mirror-networking.gitbook.io/docs/components/network-authenticators
-    API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkAuthenticator.html
-*/
-
-namespace Mirror.Examples.Chat
+public class TreeAuthenticator : NetworkAuthenticator
 {
-    [AddComponentMenu("")]
-    public class ChatAuthenticator : NetworkAuthenticator
+    readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
+
+    public static string Username
     {
-        readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
+        get => PlayerPrefs.GetString("GGJ2023_Username");
+        set => PlayerPrefs.SetString("GGJ2023_Username",value);
+    }
 
-        [Header("Client Username")]
-        private string username;
+    #region Messages
 
-        #region Messages
+    public struct AuthRequestMessage : NetworkMessage
+    {
+        // use whatever credentials make sense for your game
+        // for example, you might want to pass the accessToken if using oauth
+        public string authUsername;
+    }
 
-        public struct AuthRequestMessage : NetworkMessage
-        {
-            // use whatever credentials make sense for your game
-            // for example, you might want to pass the accessToken if using oauth
-            public string authUsername;
-        }
+    public struct AuthResponseMessage : NetworkMessage
+    {
+        public byte code;
+        public string message;
+    }
 
-        public struct AuthResponseMessage : NetworkMessage
-        {
-            public byte code;
-            public string message;
-        }
+    #endregion
 
-        #endregion
-
-        #region Server
+    #region Server
 
         /// <summary>
         /// Called on server from StartServer to initialize the Authenticator
@@ -74,13 +70,16 @@ namespace Mirror.Examples.Chat
         {
             Debug.Log($"Authentication Request: {msg.authUsername}");
 
-            if (connectionsPendingDisconnect.Contains(conn)) return;
+            if (connectionsPendingDisconnect.Contains(conn))
+            {
+                return;
+            }
 
             // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
-            if (!Player.playerNames.Contains(msg.authUsername))
+            if (!ServerGameManager.Instance.ActivePlayerNames.Contains(msg.authUsername))
             {
                 // Add the name to the HashSet
-                Player.playerNames.Add(msg.authUsername);
+                ServerGameManager.Instance.ActivePlayerNames.Add(msg.authUsername);
 
                 // Store username in authenticationData
                 // This will be read in Player.OnStartServer
@@ -137,14 +136,6 @@ namespace Mirror.Examples.Chat
 
         #region Client
 
-        // Called by UI element UsernameInput.OnValueChanged
-        public void SetPlayername(string username)
-        {
-            this.username = username;
-            LoginUI.instance.errorText.text = string.Empty;
-            LoginUI.instance.errorText.gameObject.SetActive(false);
-        }
-
         /// <summary>
         /// Called on client from StartClient to initialize the Authenticator
         /// <para>Client message handlers should be registered in this method.</para>
@@ -172,7 +163,7 @@ namespace Mirror.Examples.Chat
         {
             AuthRequestMessage authRequestMessage = new AuthRequestMessage
             {
-                authUsername = username,
+                authUsername = Username,
             };
 
             NetworkClient.Send(authRequestMessage);
@@ -200,11 +191,10 @@ namespace Mirror.Examples.Chat
                 NetworkManager.singleton.StopHost();
 
                 // Do this AFTER StopHost so it doesn't get cleared / hidden by OnClientDisconnect
-                LoginUI.instance.errorText.text = msg.message;
-                LoginUI.instance.errorText.gameObject.SetActive(true);
+                //LoginUI.instance.errorText.text = msg.message;
+                //LoginUI.instance.errorText.gameObject.SetActive(true);
             }
         }
 
         #endregion
-    }
 }
