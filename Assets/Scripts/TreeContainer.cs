@@ -4,8 +4,7 @@ using Mirror;
 
 public class TreeContainer : NetworkBehaviour, IPointerClickHandler
 {
-    [SerializeField]
-    private RootsController rootsPrefab;
+    [SerializeField] private RootsController rootsPrefab;
 
     private RootsController currentRootsController;
 
@@ -19,9 +18,9 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
 
         Debug.Log("Client Click!");
 
-        if (PlayerController.LocalPlayer != null)
+        if (PlayerController.localPlayerController != null)
         {
-            PlayerController.LocalPlayer.SpawnTree(this);
+            PlayerController.localPlayerController.SpawnTree(this);
         }
     }
 
@@ -34,10 +33,10 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
             Debug.Log("TreeContainer: Tree was already spawned here!");
             return;
         }
+
         Debug.Log("TreeContainer: Spawning!");
         currentRootsController = Instantiate(rootsPrefab);
         currentRootsController.transform.position = transform.position;
         NetworkServer.Spawn(currentRootsController.gameObject);
     }
-
 }
