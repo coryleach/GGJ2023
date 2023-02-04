@@ -15,7 +15,7 @@ namespace Mirror.Examples.Chat
         readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
 
         [Header("Client Username")]
-        public string playerName;
+        private string username;
 
         #region Messages
 
@@ -140,7 +140,7 @@ namespace Mirror.Examples.Chat
         // Called by UI element UsernameInput.OnValueChanged
         public void SetPlayername(string username)
         {
-            playerName = username;
+            this.username = username;
             LoginUI.instance.errorText.text = string.Empty;
             LoginUI.instance.errorText.gameObject.SetActive(false);
         }
@@ -172,7 +172,7 @@ namespace Mirror.Examples.Chat
         {
             AuthRequestMessage authRequestMessage = new AuthRequestMessage
             {
-                authUsername = playerName,
+                authUsername = username,
             };
 
             NetworkClient.Send(authRequestMessage);
