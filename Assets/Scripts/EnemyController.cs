@@ -1,4 +1,9 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+
+[Serializable]
+public class EnemyEvent : UnityEvent<EnemyController> {}
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,6 +17,13 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D _rigidbody2D = null;
 
     private PathNode currentNode = null;
+
+    public EnemyEvent OnDestroyed => new EnemyEvent();
+
+    private void OnDestroy()
+    {
+        OnDestroyed.Invoke(this);
+    }
 
     public void SetPath(PathNode node)
     {

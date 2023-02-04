@@ -14,9 +14,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float spawnInterval = 1f;
 
+    [SerializeField]
+    private int maxSpawns = 20;
+
     private float t = 0;
 
     private float delay = 0;
+
+    private int spawnCount = 0;
 
     private void Start()
     {
@@ -25,6 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (spawnCount >= maxSpawns)
+        {
+            return;
+        }
+
         if (delay > 0)
         {
             delay -= Time.deltaTime;
@@ -43,6 +53,13 @@ public class EnemySpawner : MonoBehaviour
     {
         var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
         spawnedEnemy.SetPath(firstPathNode);
+        spawnedEnemy.OnDestroyed.AddListener(OnEnemyDestroyed);
+        spawnCount++;
+    }
+
+    private void OnEnemyDestroyed(EnemyController enemy)
+    {
+        spawnCount--;
     }
 
 }

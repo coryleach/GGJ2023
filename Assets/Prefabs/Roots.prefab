@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b493c4300952c4c399e54aaa439723b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 1.06
 --- !u!58 &6319150154712806441
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 2.59
 --- !u!1 &6319150154768675264
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,5 +645,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSource: {fileID: 6319150154037705553}
-  cooldown: 1
+  cooldown: 0.2
   projectilePrefab: {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
