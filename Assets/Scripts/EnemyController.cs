@@ -17,17 +17,28 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private Rigidbody2D _rigidbody2D = null;
 
-    
     private PathNode currentNode = null;
 
     [SyncVar]
     public Vector3 currentNodePosition = Vector3.zero;
 
-    public EnemyEvent OnDestroyed => new EnemyEvent();
+    public int CurrentHealth = 10;
+
+    public EnemyEvent OnDestroyed { get; } = new EnemyEvent();
 
     private void OnDestroy()
     {
         OnDestroyed.Invoke(this);
+    }
+
+    [ServerCallback]
+    public void GetHit(int damage)
+    {
+        CurrentHealth -= damage;
+        if(CurrentHealth <= 0)
+        {
+            NetworkServer.Destroy(gameObject);
+        }
     }
 
     public void SetPath(PathNode node)

@@ -9,6 +9,9 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
 
     private RootsController currentRootsController;
 
+    [SerializeField]
+    private GameObject CircleObject;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         //Don't call this unless this object is on the client
@@ -22,6 +25,12 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         if (PlayerController.localPlayerController != null)
         {
             PlayerController.localPlayerController.SpawnTree(this);
+            Spawn();
+            var rend = gameObject.GetComponent<SpriteRenderer>();
+            if (CircleObject != null)
+            {
+                CircleObject.SetActive(false);
+            }
         }
     }
 

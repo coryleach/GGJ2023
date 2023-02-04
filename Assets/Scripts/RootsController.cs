@@ -12,6 +12,10 @@ public class RootsController : NetworkBehaviour
     [SerializeField]
     private ProjectileWeapon weapon;
 
+    [SerializeField]
+    private Animator anim = null;
+
+    [SerializeField]
     private Targetable currentTarget = null;
 
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
@@ -30,9 +34,15 @@ public class RootsController : NetworkBehaviour
     {
         ownerLabel.text = newValue;
     }
+    private float sproutTimer = 1.5f;
+    private float plantTime = 0f;
+
+    [SyncVar]
+    private int level = 0;
 
     private void Start()
     {
+        plantTime = Time.time;
         targeter.OnTargetLost.AddListener(TargetRemoved);
         targeter.OnTargetAdded.AddListener(TargetAdded);
     }
@@ -45,6 +55,11 @@ public class RootsController : NetworkBehaviour
 
     private void Update()
     {
+        if(level < 1 && Time.time > plantTime + sproutTimer)
+        {
+            level++;
+            anim.SetInteger("Level", level);
+        }
         if (weapon == null)
         {
             return;
@@ -60,6 +75,7 @@ public class RootsController : NetworkBehaviour
         if (isServer && weapon.IsReady && currentTarget != null)
         {
             weapon.Fire(currentTarget.transform);
+            anim.SetBool("Attacking", true);
         }
 
         weapon.Tick();
@@ -84,6 +100,10 @@ public class RootsController : NetworkBehaviour
         if (currentTarget == target)
         {
             currentTarget = FindTarget();
+        }
+        if(currentTarget == null)
+        {
+            anim.SetBool("Attacking", false);
         }
     }
 
