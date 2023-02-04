@@ -1,7 +1,6 @@
 using UnityEngine;
-using Mirror;
 
-public class Projectile : NetworkBehaviour
+public class Projectile : MonoBehaviour
 {
     [SerializeField]
     private float speed = 2f;
@@ -18,8 +17,11 @@ public class Projectile : NetworkBehaviour
         set => speed = value;
     }
 
-    [SyncVar]
-    public Vector2 Direction = Vector2.zero; 
+    public Vector2 Direction
+    {
+        get;
+        set;
+    }
 
     private float t = 0;
 
@@ -28,7 +30,7 @@ public class Projectile : NetworkBehaviour
         t += Time.deltaTime;
         if (t >= lifetime)
         {
-            NetworkServer.Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

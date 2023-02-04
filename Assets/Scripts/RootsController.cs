@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using Mirror;
 
-public class RootsController : NetworkBehaviour
+public class RootsController : MonoBehaviour
 {
 
     [SerializeField]
@@ -39,7 +38,7 @@ public class RootsController : NetworkBehaviour
         }
 
         //Fire our weapon if it is ready and we have a target
-        if (isServer && weapon.IsReady && currentTarget != null)
+        if (weapon.IsReady && currentTarget != null)
         {
             weapon.Fire(currentTarget.transform);
         }
