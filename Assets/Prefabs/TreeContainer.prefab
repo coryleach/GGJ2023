@@ -135,6 +135,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rootsPrefab: {fileID: 6319150155264370605, guid: 6dfbf64e948df4b55819d3646d8fd1af, type: 3}
+  CircleObject: {fileID: 8045567031632626317}
 --- !u!61 &8045567033047437637
 BoxCollider2D:
   m_ObjectHideFlags: 0

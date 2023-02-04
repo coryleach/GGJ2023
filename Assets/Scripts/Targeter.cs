@@ -13,6 +13,7 @@ public class Targeter : MonoBehaviour
     public TargetEvent OnTargetAdded { get; } = new TargetEvent();
     public TargetEvent OnTargetLost { get; } = new TargetEvent();
 
+    [SerializeField]
     private List<Targetable> _targets = new List<Targetable>();
 
     private void OnTriggerEnter2D(Collider2D col)

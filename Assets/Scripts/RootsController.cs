@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
+using Mirror;
+using TMPro;
 
-public class RootsController : MonoBehaviour
+public class RootsController : NetworkBehaviour
 {
 
     [SerializeField]
@@ -10,10 +12,37 @@ public class RootsController : MonoBehaviour
     [SerializeField]
     private ProjectileWeapon weapon;
 
+    [SerializeField]
+    private Animator anim = null;
+
+    [SerializeField]
     private Targetable currentTarget = null;
+
+    [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
+    private string owner;
+    public string Owner => owner;
+
+    [SerializeField] private TMP_Text ownerLabel;
+
+    [Server]
+    public void SetPlayer(PlayerController player)
+    {
+        owner = player.Data.username;
+    }
+
+    private void OnOwnerChanged(string oldValue, string newValue)
+    {
+        ownerLabel.text = newValue;
+    }
+    private float sproutTimer = 1.5f;
+    private float plantTime = 0f;
+
+    [SyncVar]
+    private int level = 0;
 
     private void Start()
     {
+        plantTime = Time.time;
         targeter.OnTargetLost.AddListener(TargetRemoved);
         targeter.OnTargetAdded.AddListener(TargetAdded);
     }
@@ -26,6 +55,11 @@ public class RootsController : MonoBehaviour
 
     private void Update()
     {
+        if(level < 1 && Time.time > plantTime + sproutTimer)
+        {
+            level++;
+            anim.SetInteger("Level", level);
+        }
         if (weapon == null)
         {
             return;
@@ -38,9 +72,14 @@ public class RootsController : MonoBehaviour
         }
 
         //Fire our weapon if it is ready and we have a target
-        if (weapon.IsReady && currentTarget != null)
+        if (isServer && weapon.IsReady && currentTarget != null)
         {
             weapon.Fire(currentTarget.transform);
+            anim.SetBool("Attacking", true);
+        }
+        else
+        {
+            anim.SetBool("Attacking", false);
         }
 
         weapon.Tick();
