@@ -21,8 +21,10 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             _localPlayerController = this;
+            username = TreeAuthenticator.Username;
         }
-        else if (isServer)
+
+        if (isServer)
         {
             var playerName = (string)connectionToClient.authenticationData;
             //Get/Create Data for this player on the server
