@@ -25,7 +25,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         if (PlayerController.localPlayerController != null)
         {
             PlayerController.localPlayerController.SpawnTree(this);
-            Spawn();
+            //Spawn();
             var rend = gameObject.GetComponent<SpriteRenderer>();
             if (CircleObject != null)
             {

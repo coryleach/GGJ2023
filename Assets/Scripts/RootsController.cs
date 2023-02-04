@@ -77,6 +77,10 @@ public class RootsController : NetworkBehaviour
             weapon.Fire(currentTarget.transform);
             anim.SetBool("Attacking", true);
         }
+        else
+        {
+            anim.SetBool("Attacking", false);
+        }
 
         weapon.Tick();
     }
@@ -100,10 +104,6 @@ public class RootsController : NetworkBehaviour
         if (currentTarget == target)
         {
             currentTarget = FindTarget();
-        }
-        if(currentTarget == null)
-        {
-            anim.SetBool("Attacking", false);
         }
     }
 
