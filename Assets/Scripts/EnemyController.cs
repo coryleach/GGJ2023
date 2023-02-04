@@ -52,11 +52,12 @@ public class EnemyController : NetworkBehaviour
         }
     }
 
+    
     private void FixedUpdate()
     {
         if (currentNode == null)
         {
-            Debug.Log("Node is null!");
+            //Debug.Log("Node is null!");
             //return;
         }
 
