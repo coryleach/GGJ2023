@@ -52,6 +52,7 @@ public class EnemyController : NetworkBehaviour
         }
     }
 
+    
     private void FixedUpdate()
     {
         var dir = currentNodePosition - transform.position;
