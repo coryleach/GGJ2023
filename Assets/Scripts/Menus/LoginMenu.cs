@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Mirror;
 using TMPro;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,12 +19,18 @@ public class LoginMenu : Menu
     [SerializeField] private bool serverAndClient = false;
 
     private bool cancel = false;
+    private bool authFailed = false;
 
     private void Start()
     {
         cancelButton.onClick.AddListener(() =>
         {
             cancel = true;
+        });
+        (networkManager.authenticator as TreeAuthenticator)?.OnClientAuthFailed.AddListener((msg) =>
+        {
+            authFailed = true;
+            errorText.text = msg;
         });
     }
 
@@ -76,6 +83,8 @@ public class LoginMenu : Menu
         networkManager.networkAddress = ip;
 
         cancel = false;
+        authFailed = false;
+
         networkManager.StartClient();
 
         //Do nothing until client connects
@@ -88,9 +97,12 @@ public class LoginMenu : Menu
 
         if (NetworkClient.isConnected)
         {
-            //We successfully connected
-            GoToGame();
-            return;
+            if (NetworkClient.connection.isAuthenticated)
+            {
+                //We successfully connected
+                GoToGame();
+                return;
+            }
         }
 
         SetInteractable(true);
@@ -101,8 +113,11 @@ public class LoginMenu : Menu
             return;
         }
 
-        //We failed to connect
-        errorText.text = "Failed to connect to host";
+        if (!authFailed)
+        {
+            //We simply failed to connect
+            errorText.text = "Failed to connect to host";
+        }
     }
 
     private void GoToGame()

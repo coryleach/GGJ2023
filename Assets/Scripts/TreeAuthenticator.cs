@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class MessageEvent : UnityEvent<string> {}
 
 public class TreeAuthenticator : NetworkAuthenticator
 {
+
     readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
 
     public static string Username
@@ -12,6 +16,8 @@ public class TreeAuthenticator : NetworkAuthenticator
         get => PlayerPrefs.GetString("GGJ2023_Username");
         set => PlayerPrefs.SetString("GGJ2023_Username",value);
     }
+
+    public MessageEvent OnClientAuthFailed { get; } = new MessageEvent();
 
     #region Messages
 
@@ -184,15 +190,11 @@ public class TreeAuthenticator : NetworkAuthenticator
             }
             else
             {
-                Debug.LogError($"Authentication Response: {msg.message}");
+                OnClientAuthFailed.Invoke(msg.message);
 
                 // Authentication has been rejected
                 // StopHost works for both host client and remote clients
                 NetworkManager.singleton.StopHost();
-
-                // Do this AFTER StopHost so it doesn't get cleared / hidden by OnClientDisconnect
-                //LoginUI.instance.errorText.text = msg.message;
-                //LoginUI.instance.errorText.gameObject.SetActive(true);
             }
         }
 

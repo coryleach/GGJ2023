@@ -665,11 +665,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 3d18e8dd-7aaf-4401-ad08-c4d9813db954
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: GGJ2023Unity
+  organizationId: thefudster
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
