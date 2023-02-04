@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
 [Serializable]
 public class EnemyEvent : UnityEvent<EnemyController> {}
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : NetworkBehaviour
 {
     [SerializeField]
     private float moveSpeed = 1f;
@@ -16,7 +17,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D _rigidbody2D = null;
 
+    
     private PathNode currentNode = null;
+
+    [SyncVar]
+    public Vector3 currentNodePosition = Vector3.zero;
 
     public EnemyEvent OnDestroyed => new EnemyEvent();
 
@@ -28,8 +33,10 @@ public class EnemyController : MonoBehaviour
     public void SetPath(PathNode node)
     {
         currentNode = node;
+        currentNodePosition = currentNode.Position;
     }
 
+    [ServerCallback]
     private void Update()
     {
         if (currentNode == null)
@@ -41,6 +48,7 @@ public class EnemyController : MonoBehaviour
         if (distSqrd <= (nextNodeDistance * nextNodeDistance))
         {
             currentNode = currentNode.NextNode();
+            currentNodePosition = currentNode.Position;
         }
     }
 
@@ -48,10 +56,11 @@ public class EnemyController : MonoBehaviour
     {
         if (currentNode == null)
         {
-            return;
+            Debug.Log("Node is null!");
+            //return;
         }
 
-        var dir = currentNode.Position - transform.position;
+        var dir = currentNodePosition - transform.position;
         _rigidbody2D.velocity = dir.normalized * moveSpeed;
     }
 

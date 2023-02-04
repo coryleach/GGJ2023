@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8045567033047437636}
   - component: {fileID: 8045567033047437639}
   - component: {fileID: 8045567033047437637}
+  - component: {fileID: 6780471597107889543}
   m_Layer: 5
   m_Name: TreeContainer
   m_TagString: Untagged
@@ -130,6 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb42fd5c3eca94a2aa14191e37a7a91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   rootsPrefab: {fileID: 6319150155264370605, guid: 6dfbf64e948df4b55819d3646d8fd1af, type: 3}
 --- !u!61 &8045567033047437637
 BoxCollider2D:
@@ -157,3 +161,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6780471597107889543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8045567033047437638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 2012036381
+  serverOnly: 0
+  visible: 2
+  hasSpawned: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : NetworkBehaviour
 {
     [SerializeField]
     private EnemyController enemyPrefab;
@@ -49,12 +50,20 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    [ServerCallback]
     private void Spawn()
     {
-        var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
-        spawnedEnemy.SetPath(firstPathNode);
-        spawnedEnemy.OnDestroyed.AddListener(OnEnemyDestroyed);
-        spawnCount++;
+        //Only spawn enemies if the Network Server is up and running
+        if (NetworkServer.active)
+        {
+            var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
+            spawnCount++;
+            NetworkServer.Spawn(spawnedEnemy.gameObject);
+            var controller = spawnedEnemy.GetComponent<EnemyController>();
+            spawnedEnemy.SetPath(firstPathNode);
+            spawnedEnemy.OnDestroyed.AddListener(OnEnemyDestroyed);
+            spawnCount++;
+        }
     }
 
     private void OnEnemyDestroyed(EnemyController enemy)

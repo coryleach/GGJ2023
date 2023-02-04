@@ -110,6 +110,8 @@ GameObject:
   - component: {fileID: 6956493513768594832}
   - component: {fileID: 495555193901279075}
   - component: {fileID: 4109766280644696321}
+  - component: {fileID: -2856180066645189068}
+  - component: {fileID: -278911669662950844}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -145,9 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e8f16b4387c448782e3b481b2f6407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   moveSpeed: 1
   nextNodeDistance: 0.25
   _rigidbody2D: {fileID: 6956493513768594832}
+  currentNodePosition: {x: 0, y: 0, z: 0}
 --- !u!50 &6956493513768594832
 Rigidbody2D:
   serializedVersion: 4
@@ -163,7 +169,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -197,3 +203,48 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &-2856180066645189068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6204119728907201866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 1604084868
+  serverOnly: 0
+  visible: 2
+  hasSpawned: 0
+--- !u!114 &-278911669662950844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6204119728907201866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 6204119728907201864}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
