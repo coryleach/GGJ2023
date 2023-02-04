@@ -22,6 +22,7 @@ public class EnemySpawner : NetworkBehaviour
 
     private float delay = 0;
 
+    [SerializeField]
     private int spawnCount = 0;
 
     private void Start()
@@ -57,7 +58,6 @@ public class EnemySpawner : NetworkBehaviour
         if (NetworkServer.active)
         {
             var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
-            spawnCount++;
             NetworkServer.Spawn(spawnedEnemy.gameObject);
             var controller = spawnedEnemy.GetComponent<EnemyController>();
             spawnedEnemy.SetPath(firstPathNode);

@@ -11,19 +11,21 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private float moveSpeed = 1f;
 
+    public int CurrentHealth = 10;
+
     [SerializeField]
     private float nextNodeDistance = 0.1f;
 
     [SerializeField]
     private Rigidbody2D _rigidbody2D = null;
 
-    
+
     private PathNode currentNode = null;
 
     [SyncVar]
     public Vector3 currentNodePosition = Vector3.zero;
 
-    public EnemyEvent OnDestroyed => new EnemyEvent();
+    public EnemyEvent OnDestroyed { get; } = new EnemyEvent();
 
     private void OnDestroy()
     {
@@ -52,14 +54,19 @@ public class EnemyController : NetworkBehaviour
         }
     }
 
+    [ServerCallback]
+    public void GetHit(int damage)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+        {
+            NetworkServer.Destroy(gameObject);
+        }
+    }
+
+
     private void FixedUpdate()
     {
-        if (currentNode == null)
-        {
-            Debug.Log("Node is null!");
-            //return;
-        }
-
         var dir = currentNodePosition - transform.position;
         _rigidbody2D.velocity = dir.normalized * moveSpeed;
     }
