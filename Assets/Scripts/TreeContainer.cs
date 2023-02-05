@@ -33,6 +33,9 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
     [SerializeField]
     private EnemySpawner spawner;
 
+    [SerializeField]
+    private AudioSource Audio;
+
     private static readonly List<TreeContainer> InstanceCollection = new List<TreeContainer>();
 
     public static TreeContainer GetSlot(int slot)

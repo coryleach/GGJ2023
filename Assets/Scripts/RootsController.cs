@@ -18,6 +18,9 @@ public class RootsController : NetworkBehaviour
     [SerializeField]
     private Targetable currentTarget = null;
 
+    [SerializeField]
+    private AudioSource Audio;
+
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
     private int slot;
 

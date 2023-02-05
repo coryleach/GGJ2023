@@ -20,6 +20,9 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private Animator anim = null;
 
+    [SerializeField]
+    private AudioSource Audio;
+
     private PathNode currentNode = null;
 
     [SyncVar]
