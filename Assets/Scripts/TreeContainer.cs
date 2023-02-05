@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Mirror;
+using UnityEngine.Events;
 
 public class TreeContainer : NetworkBehaviour, IPointerClickHandler
 {
@@ -20,11 +21,12 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         get => currentRootsController;
         set
         {
-            if (currentRootsController != null && currentRootsController != value)
+            if (value != null && currentRootsController != null && currentRootsController != value)
             {
                 Debug.LogError($"TreeContainer {slot} is already assigned a roots controller");
             }
             currentRootsController = value;
+            OnContainerChanged.Invoke();
         }
     }
 
@@ -38,6 +40,8 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
     private AudioSource Audio;
 
     private static readonly List<TreeContainer> InstanceCollection = new List<TreeContainer>();
+
+    public UnityEvent OnContainerChanged { get; } = new UnityEvent();
 
     public static TreeContainer GetSlot(int slot)
     {

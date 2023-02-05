@@ -34,16 +34,25 @@ public class PopupMenu : MonoBehaviour
 
     private void SetCurrentTreeContainer(TreeContainer treeContainer)
     {
-        if (_treeContainer != null && _treeContainer.Current != null)
+        if (_treeContainer != null)
         {
-            _treeContainer.Current.OnValueChanged.RemoveListener(RefreshCurrent);
+            _treeContainer.OnContainerChanged.RemoveListener(RefreshCurrent);
+            if (_treeContainer.Current != null)
+            {
+                _treeContainer.Current.OnValueChanged.RemoveListener(RefreshCurrent);
+            }
         }
+
 
         _treeContainer = treeContainer;
 
-        if (_treeContainer != null && _treeContainer.Current != null)
+        if (_treeContainer != null)
         {
-            _treeContainer.Current.OnValueChanged.AddListener(RefreshCurrent);
+            _treeContainer.OnContainerChanged.AddListener(RefreshCurrent);
+            if (_treeContainer.Current != null)
+            {
+                _treeContainer.Current.OnValueChanged.AddListener(RefreshCurrent);
+            }
         }
     }
 

@@ -114,6 +114,11 @@ public class RootsController : NetworkBehaviour
     {
         targeter.OnTargetLost.RemoveListener(TargetRemoved);
         targeter.OnTargetAdded.RemoveListener(TargetAdded);
+        var container = TreeContainer.GetSlot(slot);
+        if (container.Current == this)
+        {
+            container.Current = null;
+        }
     }
 
     private void Update()
