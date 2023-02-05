@@ -40,8 +40,11 @@ public class RootsController : NetworkBehaviour
     private string owner;
     public string Owner => owner;
 
-
+    [SyncVar]
     public int Kills = 0;
+
+    [SyncVar]
+    private int level = 0;
 
     [SerializeField]
     private TMP_Text ownerLabel;
@@ -79,11 +82,11 @@ public class RootsController : NetworkBehaviour
         ownerLabel.text = newValue;
     }
 
+    [SyncVar]
     private float sproutTimer = 1.5f;
-    private float plantTime = 0f;
 
     [SyncVar]
-    private int level = 0;
+    private float plantTime = 0f;
 
     private void Start()
     {
