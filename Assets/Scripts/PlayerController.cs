@@ -55,4 +55,22 @@ public class PlayerController : NetworkBehaviour
     {
         this.username = username;
     }
+
+    [Command]
+    public void UpgradeTree(int upgrade)
+    {
+        var container = TreeContainer.GetContainerForPlayer(this.username);
+        if (container == null)
+        {
+            return;
+        }
+
+        var rootsController = container.Current;
+        if (rootsController == null)
+        {
+            return;
+        }
+
+        rootsController.SelectUpgrade(upgrade);
+    }
 }

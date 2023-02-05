@@ -1,33 +1,26 @@
-using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using Mirror;
 using TMPro;
 using System.Collections.Generic;
+using Game.Scripts;
 using UnityEngine.Events;
 
 public class RootsController : NetworkBehaviour
 {
-    [SerializeField]
-    private Targeter targeter;
+    [SerializeField] private Targeter targeter;
 
-    [SerializeField]
-    private ProjectileWeapon weapon;
+    [SerializeField] private ProjectileWeapon weapon;
 
-    [SerializeField]
-    private Animator anim = null;
+    [SerializeField] private Animator anim = null;
 
-    [SerializeField]
-    private Targetable currentTarget = null;
+    [SerializeField] private Targetable currentTarget = null;
 
-    [SerializeField]
-    private AudioSource Audio;
+    [SerializeField] private AudioSource Audio;
 
-    [SerializeField]
-    private List<AudioClip> shootClips = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> shootClips = new List<AudioClip>();
 
-    [SerializeField]
-    private AudioClip growSound;
+    [SerializeField] private AudioClip growSound;
 
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
     private int slot = -1;
@@ -36,6 +29,7 @@ public class RootsController : NetworkBehaviour
 
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
     private string owner;
+
     public string Owner => owner;
 
     public UnityEvent OnValueChanged { get; } = new UnityEvent();
@@ -43,11 +37,12 @@ public class RootsController : NetworkBehaviour
     [SyncVar(hook = nameof(OnKillsChanged))]
     public int Kills = 0;
 
-    [SyncVar]
+    [SyncVar(hook = nameof(OnLevelChanged))]
     private int level = 0;
 
-    [SerializeField]
-    private TMP_Text ownerLabel;
+    [SyncVar] private int upgrade = -1;
+
+    [SerializeField] private TMP_Text ownerLabel;
 
     [Server]
     public void SetPlayer(PlayerController player)
@@ -59,6 +54,11 @@ public class RootsController : NetworkBehaviour
     public void SetSlot(int slot)
     {
         this.slot = slot;
+    }
+
+    private void OnLevelChanged(int oldValue, int newValue)
+    {
+        OnValueChanged.Invoke();
     }
 
     private void OnKillsChanged(int oldValue, int newValue)
@@ -87,11 +87,9 @@ public class RootsController : NetworkBehaviour
         ownerLabel.text = newValue;
     }
 
-    [SyncVar]
-    private float sproutTimer = 1.5f;
+    [SyncVar] private float sproutTimer = 1.5f;
 
-    [SyncVar]
-    private float plantTime = 0f;
+    [SyncVar] private float plantTime = 0f;
 
     private void Start()
     {
@@ -125,7 +123,7 @@ public class RootsController : NetworkBehaviour
             RPCSetAnimInt("Level", level);
             RPCPlayGrowSound();
         }
-        else if(level == 1 && Kills >= 20)
+        else if (level == 1 && Kills >= 20)
         {
             level++;
             RPCSetAnimInt("Level", level);
@@ -193,6 +191,29 @@ public class RootsController : NetworkBehaviour
         anim.SetInteger(tag, value);
     }
 
+    [ClientRpc]
+    public void RPCError(string msg)
+    {
+        //TODO: How can I send an Rpc to only one specific player?
+        if (PlayerController.localPlayerController.Username == this.Owner)
+        {
+            FloatyTextManager.Instance.SpawnText(msg, Color.red, transform.position);
+        }
+    }
+
+    [Server]
+    public void SelectUpgrade(int selectedUpgrade)
+    {
+        if (level != 2)
+        {
+            RPCError("Must be level 2 to upgrade!");
+            return;
+        }
+
+        level = 3;
+        upgrade = selectedUpgrade;
+    }
+
     private Targetable FindTarget()
     {
         var target = targeter.GetClosestTarget(transform.position);
@@ -219,5 +240,4 @@ public class RootsController : NetworkBehaviour
     {
         Kills++;
     }
-
 }

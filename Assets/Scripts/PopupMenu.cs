@@ -17,6 +17,8 @@ public class PopupMenu : MonoBehaviour
 
     [SerializeField] private TMP_Text killsLabel;
 
+    [SerializeField] private Button[] upgradeButtons;
+
     private TreeContainer _treeContainer = null;
 
     private void Awake()
@@ -80,6 +82,16 @@ public class PopupMenu : MonoBehaviour
 
         killsLabel.transform.parent.gameObject.SetActive(_treeContainer.Current != null);
         killsLabel.text = (_treeContainer.Current != null) ? $"{_treeContainer.Current.Kills}" : "";
+
+        for (int i = 0; i < upgradeButtons.Length; i++)
+        {
+            var upgradeBtn = upgradeButtons[i];
+            if (upgradeBtn == null)
+            {
+                continue;
+            }
+            upgradeBtn.gameObject.SetActive(_treeContainer.Current != null);
+        }
     }
 
     public void RefreshWithContainer(TreeContainer treeContainer)
@@ -94,5 +106,14 @@ public class PopupMenu : MonoBehaviour
         {
             GameCursor.Instance.Select(null);
         }
+    }
+
+    /// <summary>
+    /// Sends the upgrade command to the server from the local player
+    /// </summary>
+    /// <param name="index"></param>
+    public void Upgrade(int index)
+    {
+        PlayerController.localPlayerController.UpgradeTree(index);
     }
 }
