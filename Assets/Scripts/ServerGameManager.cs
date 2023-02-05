@@ -60,6 +60,8 @@ public class ServerGameManager : NetworkBehaviour
     private Dictionary<string, PlayerController> _players = new Dictionary<string, PlayerController>();
     public Dictionary<string, PlayerController> Players => _players;
 
+    public List<RootsController> Trees = new List<RootsController>();
+
     public PlayerData GetPlayerData(string username)
     {
         if (_gameData.playerData.TryGetValue(username, out var playerData))
@@ -97,6 +99,25 @@ public class ServerGameManager : NetworkBehaviour
         {
             Save();
         }
+    }
+
+    public void CleanupPlayer(string username)
+    {
+        ActivePlayerNames.Remove(username);
+        for(int i = Trees.Count-1; i>= 0; i--)
+        {
+            if(Trees[i].Owner == username)
+            {
+                RootsController tree = Trees[i];
+                Trees.Remove(tree);
+                NetworkServer.Destroy(tree.gameObject);
+            }
+        }
+    }
+
+    public void RegisterTree(RootsController tree)
+    {
+        Trees.Add(tree);
     }
 
     private void Save()

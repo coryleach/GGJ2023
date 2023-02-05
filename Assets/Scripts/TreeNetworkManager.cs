@@ -24,7 +24,7 @@ public class TreeNetworkManager : NetworkManager
         base.OnServerDisconnect(conn);
         var username = (string)conn.authenticationData;
         Debug.Log($"OnServerDisconnect {username}");
-        ServerGameManager.Instance.ActivePlayerNames.Remove(username);
+        ServerGameManager.Instance.CleanupPlayer(username);
     }
 
     public override void OnServerReady(NetworkConnectionToClient conn)

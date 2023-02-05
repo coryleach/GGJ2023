@@ -122,5 +122,6 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         currentRootsController.SetPlayer(player);
         NetworkServer.Spawn(currentRootsController.gameObject);
         spawner.RegisterTree(currentRootsController);
+        ServerGameManager.Instance.RegisterTree(currentRootsController);
     }
 }
