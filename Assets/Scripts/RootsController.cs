@@ -79,7 +79,7 @@ public class RootsController : NetworkBehaviour
             weapon.Fire(currentTarget.transform);
             RPCSetAnimBool("Attacking", true);
         }
-        else if(isServer)
+        else if (isServer && anim.GetBool("Attacking"))
         {
 
             RPCSetAnimBool("Attacking", false);
