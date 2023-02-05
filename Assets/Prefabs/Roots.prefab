@@ -881,6 +881,17 @@ MonoBehaviour:
   syncInterval: 0.1
   targeter: {fileID: 6319150154712806442}
   weapon: {fileID: 6319150155264370606}
+  projectiles:
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 1035fe3ed66482443820c5448009d506, type: 3}
+  - {fileID: 4832229067990256589, guid: 3dc2817d217801f459cacf318d126cec, type: 3}
+  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: 38cdd24c2961a46c6b58526a14a8d110, type: 3}
   anim: {fileID: 7475290106115770525}
   currentTarget: {fileID: 0}
   Audio: {fileID: -5262578489029756058}
@@ -888,6 +899,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f382e1f737792534bb07269e6bbbef6c, type: 3}
   - {fileID: 8300000, guid: e5f903da2b2d3df4680772c9483e65b7, type: 3}
   - {fileID: 8300000, guid: 3cc334cd3583f11418ab97b8c732cdd0, type: 3}
+  - {fileID: 8300000, guid: 671781d7a313c4e049a90fb32fee91b8, type: 3}
+  - {fileID: 8300000, guid: 5e523fe1c0d6246edb8b2583fea99686, type: 3}
+  - {fileID: 8300000, guid: a0f4e4af0c0324be5b84099c64bdffa1, type: 3}
+  - {fileID: 8300000, guid: beeb4717e92b9428c9eafd667e53e109, type: 3}
+  - {fileID: 8300000, guid: b078479be239b44299ab9a40e70007a8, type: 3}
+  - {fileID: 8300000, guid: 83ca89b28f1bc4cf6971869b238564f2, type: 3}
+  - {fileID: 8300000, guid: ecae626667372414aab8452dc7a9eb57, type: 3}
   growSound: {fileID: 8300000, guid: fcfbd484beda18647a3ca2dd8a3184ef, type: 3}
   slot: -1
   owner: 
