@@ -19,6 +19,9 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject CircleObject;
 
+    [SerializeField]
+    private EnemySpawner spawner;
+
     private static readonly List<TreeContainer> InstanceCollection = new List<TreeContainer>();
 
     public static TreeContainer GetSlot(int slot)
@@ -94,5 +97,6 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         currentRootsController.Slot = slot;
         currentRootsController.SetPlayer(player);
         NetworkServer.Spawn(currentRootsController.gameObject);
+        spawner.RegisterTree(currentRootsController);
     }
 }

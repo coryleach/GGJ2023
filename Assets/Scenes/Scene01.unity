@@ -1513,6 +1513,54 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2950289121
       objectReference: {fileID: 0}
+    - target: {fileID: 2663641725926002879, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726116920953, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726179736119, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726290494173, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726298111594, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726501113454, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726753804908, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641726762061768, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641727055966902, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641727470047338, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 2663641727624201008, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
+    - target: {fileID: 5427031748323839656, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1699242089}
     - target: {fileID: 5427031748429749716, guid: ca298c3ebb04a49d181fc2db68281291, type: 3}
       propertyPath: m_Name
       value: TreeContainers

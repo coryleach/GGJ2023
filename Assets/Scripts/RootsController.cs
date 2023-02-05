@@ -25,6 +25,7 @@ public class RootsController : NetworkBehaviour
 
     [SerializeField] private TMP_Text ownerLabel;
 
+    public int Kills = 0;
 
     [Server]
     public void SetPlayer(PlayerController player)
@@ -62,6 +63,12 @@ public class RootsController : NetworkBehaviour
             level++;
             RPCSetAnimInt("Level", level);
         }
+        else if(level == 1 && Kills >= 20)
+        {
+            level++;
+            RPCSetAnimInt("Level", level);
+        }
+
         if (weapon == null)
         {
             return;
@@ -120,6 +127,11 @@ public class RootsController : NetworkBehaviour
         {
             currentTarget = FindTarget();
         }
+    }
+
+    public void OnEnemyDestroyed(EnemyController enemy)
+    {
+        Kills++;
     }
 
 }
