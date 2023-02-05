@@ -3999,22 +3999,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3295649011747900319}
     m_Modifications:
-    - target: {fileID: 5928453172237849058, guid: a85a3669fbeab478084f60adff6cd61a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928453172237849058, guid: a85a3669fbeab478084f60adff6cd61a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928453172237849058, guid: a85a3669fbeab478084f60adff6cd61a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928453172237849058, guid: a85a3669fbeab478084f60adff6cd61a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7383979930501936124, guid: a85a3669fbeab478084f60adff6cd61a, type: 3}
       propertyPath: m_Name
       value: TowerInfoPanel
