@@ -808,6 +808,20 @@ PrefabInstance:
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 1054705960}
+    - target: {fileID: 8712093558686092910, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
+      propertyPath: m_text
+      value: 'Made for Global Game Jam 2023!
+
+
+        Special thanks to:
+
+        IGDATC
+
+        Noble
+        Robot
+
+        Amber Waves of Games'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
 --- !u!1 &906569102
@@ -890,6 +904,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   saveAndLoad: 0
+  Trees: []
 --- !u!4 &936246158
 Transform:
   m_ObjectHideFlags: 0
