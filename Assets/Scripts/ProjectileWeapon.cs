@@ -31,6 +31,7 @@ public class ProjectileWeapon : NetworkBehaviour
         cooldownTime = cooldown;
         var projecitle = Instantiate(projectilePrefab, projectileSource.position, Quaternion.identity);
         NetworkServer.Spawn(projecitle.gameObject);
+        projecitle.Target = target.position;
         projecitle.Direction = target.position - projectileSource.position;
     }
 

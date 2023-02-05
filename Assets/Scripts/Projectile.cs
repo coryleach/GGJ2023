@@ -1,19 +1,22 @@
+using System;
 using UnityEngine;
 using Mirror;
 
 public class Projectile : NetworkBehaviour
 {
     [SerializeField]
-    private float speed = 2f;
+    protected float speed = 2f;
 
     [SerializeField]
-    private Rigidbody2D _rigidbody2D = null;
+    protected Rigidbody2D _rigidbody2D = null;
 
     [SerializeField]
-    private float lifetime = 1f;
+    protected float lifetime = 1f;
 
     [SerializeField]
-    private AudioSource Audio;
+    protected AudioSource Audio;
+
+    [SerializeField] private GameObject clientSpawnOnDestroy;
 
     public float Speed
     {
@@ -24,9 +27,24 @@ public class Projectile : NetworkBehaviour
     [SyncVar]
     public Vector2 Direction = Vector2.zero;
 
-    private float t = 0;
+    [SyncVar(hook = nameof(OnTargetSet))]
+    public Vector2 Target = Vector2.zero;
 
-    private void Update()
+    private void OnDestroy()
+    {
+        if (isClient && clientSpawnOnDestroy != null)
+        {
+            Instantiate(clientSpawnOnDestroy, transform.position, Quaternion.identity);
+        }
+    }
+
+    protected virtual void OnTargetSet(Vector2 oldPt, Vector2 newPt)
+    {
+
+    }
+
+    protected float t = 0;
+    protected virtual void Update()
     {
         t += Time.deltaTime;
         if (t >= lifetime)
@@ -35,7 +53,7 @@ public class Projectile : NetworkBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         _rigidbody2D.velocity = Speed * Direction;
     }
