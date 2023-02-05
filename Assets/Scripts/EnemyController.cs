@@ -76,6 +76,15 @@ public class EnemyController : NetworkBehaviour
     }
 
 
+    private float speedMultiplier = 1f;
+    private float speedMultiplierDuration = 0f;
+
+    public void SetSpeedModifier(float amount, float duraiton)
+    {
+        speedMultiplier = Mathf.Min(amount, speedMultiplier);
+        speedMultiplierDuration = duraiton;
+    }
+
     private void Update()
     {
         if (isServer)
@@ -91,6 +100,16 @@ public class EnemyController : NetworkBehaviour
                 currentNode = currentNode.NextNode();
                 currentNodePosition = currentNode.Position;
             }
+
+            //Reset speed multiplier when the duration is up
+            if (speedMultiplierDuration > 0)
+            {
+                speedMultiplierDuration -= Time.deltaTime;
+                if (speedMultiplierDuration <= 0)
+                {
+                    speedMultiplier = 1;
+                }
+            }
         }
         if(anim != null)
         {
@@ -101,7 +120,7 @@ public class EnemyController : NetworkBehaviour
     private void FixedUpdate()
     {
         var dir = currentNodePosition - transform.position;
-        _rigidbody2D.velocity = dir.normalized * moveSpeed;
+        _rigidbody2D.velocity = dir.normalized * moveSpeed * speedMultiplier;
     }
 
 }
