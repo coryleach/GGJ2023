@@ -231,7 +231,8 @@ public class RootsController : NetworkBehaviour
             return;
         }
 
-        level = 3;
+        level = selectedUpgrade;
+        RPCSetAnimInt("Level", level);
         upgrade = selectedUpgrade;
     }
 
