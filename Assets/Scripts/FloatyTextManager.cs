@@ -1,53 +1,50 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class FloatyTextManager : MonoBehaviour
+namespace Game.Scripts
 {
-    private static FloatyTextManager instance;
-    public static FloatyTextManager Instance => instance;
-
-    [SerializeField] private FloatyText prefab;
-
-    private Queue<FloatyText> textsPool = new Queue<FloatyText>();
-
-    private void Awake()
+    public class FloatyTextManager : MonoBehaviour
     {
-        Debug.Log("FloatyTextManager Awake!");
-        instance = this;
-        prefab.gameObject.SetActive(false);
-    }
+        private static FloatyTextManager instance;
+        public static FloatyTextManager Instance => instance;
 
-    private void OnDestroy()
-    {
-        Debug.Log("FloatyTextManager OnDestroy!");
-    }
+        [SerializeField]
+        private FloatyText prefab;
 
-    public void SpawnText(string text, Color color, Vector3 position)
-    {
-        FloatyText spawnedText = null;
-        if (textsPool.Count > 0)
+        private Queue<FloatyText> textsPool = new Queue<FloatyText>();
+
+        private void Awake()
         {
-            spawnedText = textsPool.Dequeue();
-        }
-        else
-        {
-            spawnedText = Instantiate(prefab, transform);
-            spawnedText.OnComplete.AddListener(OnFloatyTextComplete);
+            instance = this;
+            prefab.gameObject.SetActive(false);
         }
 
-        spawnedText.Text = text;
-        spawnedText.TextColor = color;
-        spawnedText.Pivot = position;
-        spawnedText.transform.position = position;
-        spawnedText.gameObject.SetActive(true);
-        spawnedText.enabled = true;
-    }
+        public void SpawnText(string text, Color color, Vector3 position)
+        {
+            FloatyText spawnedText = null;
+            if (textsPool.Count > 0)
+            {
+                spawnedText = textsPool.Dequeue();
+            }
+            else
+            {
+                spawnedText = Instantiate(prefab, transform);
+                spawnedText.OnComplete.AddListener(OnFloatyTextComplete);
+            }
 
-    private void OnFloatyTextComplete(FloatyText text)
-    {
-        textsPool.Enqueue(text);
-        text.gameObject.SetActive(false);
+            spawnedText.Text = text;
+            spawnedText.TextColor = color;
+            spawnedText.Pivot = position;
+            spawnedText.transform.position = position;
+            spawnedText.gameObject.SetActive(true);
+            spawnedText.enabled = true;
+        }
+
+        private void OnFloatyTextComplete(FloatyText text)
+        {
+            textsPool.Enqueue(text);
+            text.gameObject.SetActive(false);
+        }
+
     }
 }
