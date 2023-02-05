@@ -199,7 +199,6 @@ public class RootsController : NetworkBehaviour
     [ClientRpc]
     public void RPCError(string msg)
     {
-        Debug.Log($"{(isClient ? "Client" : "Server")} RPCError: {msg} -> showing if {Owner} == {PlayerController.localPlayerController.Username}");
         if (PlayerController.localPlayerController == null)
         {
             Debug.LogError("Unable to show error. No local player.");
