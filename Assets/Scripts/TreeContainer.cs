@@ -12,6 +12,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
 
     [SerializeField]
     private int slot; //This should be unique for each tree container
+    public int Slot => slot;
 
     private RootsController currentRootsController;
     public RootsController Current
@@ -65,16 +66,21 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
             return;
         }
 
-        Debug.Log("Client Click!");
+        GameCursor.Instance.Select(this);
+    }
+
+    [Client]
+    public bool Build()
+    {
         var localPlayer = PlayerController.localPlayerController;
         if (localPlayer == null)
         {
-            return;
+            return false;
         }
 
         if (PlayerOwnsAnyContainer(localPlayer.Username))
         {
-            return;
+            return false;
         }
 
         localPlayer.SpawnTree(this);
@@ -84,6 +90,8 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         {
             CircleObject.SetActive(false);
         }
+
+        return true;
     }
 
     [Server]
