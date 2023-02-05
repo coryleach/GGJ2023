@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using Mirror;
 using TMPro;
@@ -17,14 +18,20 @@ public class RootsController : NetworkBehaviour
     [SerializeField]
     private Targetable currentTarget = null;
 
-    public int Slot { get; set; }
+    [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
+    private int slot;
+
+    public int Slot
+    {
+        get => slot;
+    }
 
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
     private string owner;
     public string Owner => owner;
 
-    [SerializeField] private TMP_Text ownerLabel;
-
+    [SerializeField]
+    private TMP_Text ownerLabel;
 
     [Server]
     public void SetPlayer(PlayerController player)
@@ -32,10 +39,33 @@ public class RootsController : NetworkBehaviour
         owner = player.Data.username;
     }
 
+    [Server]
+    public void SetSlot(int slot)
+    {
+        this.slot = slot;
+    }
+
+    private async void OnSlotChanged(int oldValue, int newValue)
+    {
+        //Wait a frame to ensure the instance list has had a chance to populate
+        await Task.Yield();
+
+        var treeContainer = TreeContainer.GetSlot(newValue);
+        if (treeContainer != null)
+        {
+            treeContainer.Current = this;
+        }
+        else
+        {
+            Debug.LogError($"Failed to get tree container for slot {newValue}");
+        }
+    }
+
     private void OnOwnerChanged(string oldValue, string newValue)
     {
         ownerLabel.text = newValue;
     }
+
     private float sproutTimer = 1.5f;
     private float plantTime = 0f;
 

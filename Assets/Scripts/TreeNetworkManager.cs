@@ -22,7 +22,9 @@ public class TreeNetworkManager : NetworkManager
     public override void OnServerDisconnect(NetworkConnectionToClient conn)
     {
         base.OnServerDisconnect(conn);
-        Debug.Log("OnServerDisconnect");
+        var username = (string)conn.authenticationData;
+        Debug.Log($"OnServerDisconnect {username}");
+        ServerGameManager.Instance.ActivePlayerNames.Remove(username);
     }
 
     public override void OnServerReady(NetworkConnectionToClient conn)
