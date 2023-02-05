@@ -85,8 +85,11 @@ public class PopupMenu : MonoBehaviour
             towerInfo.text = $"{_treeContainer.Current.Owner}'s Tree";
         }
 
+        var rootsController = _treeContainer.Current;
         var localPlayer = PlayerController.localPlayerController;
-        buildButton.gameObject.SetActive(_treeContainer.Current == null);
+        var isMine = (rootsController != null) && (rootsController.Owner == localPlayer.Username);
+        var level = (rootsController != null) ? rootsController.Level : 0;
+        buildButton.gameObject.SetActive(rootsController == null);
         buildButton.interactable = !TreeContainer.PlayerOwnsAnyContainer(localPlayer.Username);
 
         killsLabel.transform.parent.gameObject.SetActive(_treeContainer.Current != null);
@@ -99,7 +102,9 @@ public class PopupMenu : MonoBehaviour
             {
                 continue;
             }
-            upgradeBtn.gameObject.SetActive(_treeContainer.Current != null);
+
+            upgradeBtn.gameObject.SetActive(isMine && level <= 2);
+            upgradeBtn.interactable = level == 2;
         }
     }
 

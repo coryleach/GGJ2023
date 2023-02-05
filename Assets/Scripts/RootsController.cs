@@ -3,7 +3,6 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using System.Collections.Generic;
-using Game.Scripts;
 using UnityEngine.Events;
 
 public class RootsController : NetworkBehaviour
@@ -39,6 +38,8 @@ public class RootsController : NetworkBehaviour
 
     [SyncVar(hook = nameof(OnLevelChanged))]
     private int level = 0;
+
+    public int Level => level;
 
     [SyncVar] private int upgrade = -1;
 
@@ -122,18 +123,21 @@ public class RootsController : NetworkBehaviour
 
     private void Update()
     {
-        if (level < 1 && Time.time > plantTime + sproutTimer)
+        if (isServer)
         {
-            level++;
-            RPCSetAnimInt("Level", level);
-            RPCPlayGrowSound();
-        }
-        else if (level == 1 && Kills >= 20)
-        {
-            level++;
-            RPCSetAnimInt("Level", level);
-            RPCPlayGrowSound();
-            weapon.cooldown *= 0.7f;
+            if (level < 1 && Time.time > plantTime + sproutTimer)
+            {
+                level++;
+                RPCSetAnimInt("Level", level);
+                RPCPlayGrowSound();
+            }
+            else if (level == 1 && Kills >= 20)
+            {
+                level++;
+                RPCSetAnimInt("Level", level);
+                RPCPlayGrowSound();
+                weapon.cooldown *= 0.7f;
+            }
         }
 
         if (weapon == null)
@@ -199,8 +203,20 @@ public class RootsController : NetworkBehaviour
     [ClientRpc]
     public void RPCError(string msg)
     {
+        if (PlayerController.localPlayerController == null)
+        {
+            Debug.LogError("Unable to show error. No local player.");
+            return;
+        }
+
+        if (FloatyTextManager.Instance == null)
+        {
+            Debug.LogError("Unable to show error. No floaty text");
+            return;
+        }
+
         //TODO: How can I send an Rpc to only one specific player?
-        if (PlayerController.localPlayerController.Username == this.Owner)
+        if (PlayerController.localPlayerController.Username == Owner)
         {
             FloatyTextManager.Instance.SpawnText(msg, Color.red, transform.position);
         }
