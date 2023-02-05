@@ -83,7 +83,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
             return;
         }
 
-        if (PlayerOwnsAnyContainer(PlayerController.localPlayerController.Username))
+        if (PlayerOwnsAnyContainer(player.Username))
         {
             return;
         }
