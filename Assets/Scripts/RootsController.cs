@@ -143,6 +143,10 @@ public class RootsController : NetworkBehaviour
         }
 
         weapon.Tick();
+        if (isClient)
+        {
+            anim.SetInteger("Level", level);
+        }
     }
 
     [ClientRpc]
