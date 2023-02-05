@@ -11,6 +11,8 @@ public class Damager : NetworkBehaviour
 
     [SerializeField] private bool destroyOnHit = true;
 
+    [SerializeField] private bool applyOnlyOnce = true;
+
     private bool applied = false;
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -29,7 +31,7 @@ public class Damager : NetworkBehaviour
 
     private void Apply(EnemyController enemy)
     {
-        if (applied)
+        if (applied && applyOnlyOnce)
         {
             return;
         }

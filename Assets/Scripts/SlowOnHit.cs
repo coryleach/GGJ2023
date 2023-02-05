@@ -15,6 +15,8 @@ public class SlowOnHit : MonoBehaviour
 
     [SerializeField] private bool destroyOnHit = false;
 
+    [SerializeField] private bool applyOnlyOnce = true;
+
     private bool applied = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,7 +35,7 @@ public class SlowOnHit : MonoBehaviour
 
     private void Apply(EnemyController enemy)
     {
-        if (applied)
+        if (applied && applyOnlyOnce)
         {
             return;
         }
