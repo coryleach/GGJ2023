@@ -55,7 +55,7 @@ public class RootsController : NetworkBehaviour
 
     private void Update()
     {
-        if(level < 1 && Time.time > plantTime + sproutTimer)
+        if (level < 1 && Time.time > plantTime + sproutTimer)
         {
             level++;
             RPCSetAnimInt("Level", level);
@@ -77,7 +77,7 @@ public class RootsController : NetworkBehaviour
             weapon.Fire(currentTarget.transform);
             RPCSetAnimBool("Attacking", true);
         }
-        else
+        else if(isServer)
         {
 
             RPCSetAnimBool("Attacking", false);
@@ -86,11 +86,13 @@ public class RootsController : NetworkBehaviour
         weapon.Tick();
     }
 
+    [ClientRpc]
     public void RPCSetAnimBool(string tag, bool value)
     {
         anim.SetBool(tag, value);
     }
 
+    [ClientRpc]
     public void RPCSetAnimInt(string tag, int value)
     {
         anim.SetInteger(tag, value);

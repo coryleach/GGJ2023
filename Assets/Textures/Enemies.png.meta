@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd94e09627e0f4f07b0c979a2b6fba19
+guid: e106d509f3c152f48ac129095fb1c0e5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Seedling_0
+      name: Enemies_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +143,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28b199dcc37947a40918322aa10edfa8
-      internalID: 917527292
+      spriteID: af25901f549fabf408d07341b82e942a
+      internalID: -1561022716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seedling_1
+      name: Enemies_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3751c120b5aaddf49a6747684a346c39
+      internalID: 713419925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d05180cfeeccd640b37b2c8709a09f8
+      internalID: -1016275787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e8055ecd66b3d45821ec0072e7014c
+      internalID: -753232589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_4
       rect:
         serializedVersion: 2
         x: 0
@@ -164,14 +227,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbdaffb650e6d834490ceab647b2d33a
-      internalID: 2016511062
+      spriteID: 965626702434f60478f5382704b8b551
+      internalID: 1587753212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seedling_2
+      name: Enemies_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a10262c77eb8e44afccde15a867def
+      internalID: 607142407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c45aa07425bd35e4cbd4997b7da1510b
+      internalID: 1907811541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab0b7cb4e384d549b1c1835e8b0c044
+      internalID: 753452987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies_8
       rect:
         serializedVersion: 2
         x: 0
@@ -185,14 +311,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b61d159190f2a0640aeb228df0f84a5b
-      internalID: -1283636295
+      spriteID: ef10c7c91ec4ced48861d776e0ab8e5c
+      internalID: 928069817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seedling_3
+      name: Enemies_9
       rect:
         serializedVersion: 2
         x: 256
@@ -206,14 +332,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25b21213125f9e04eb613bc0364be832
-      internalID: -1908460514
+      spriteID: aebe082f5c8400d42bbb84f3d6130b77
+      internalID: 184959192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seedling_4
+      name: Enemies_10
       rect:
         serializedVersion: 2
         x: 512
@@ -227,14 +353,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf4ec29e3c221849952c4070630feaa
-      internalID: -579639139
+      spriteID: 0758e67b242774343a55a34e969c7b9f
+      internalID: -438112708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seedling_5
+      name: Enemies_11
       rect:
         serializedVersion: 2
         x: 768
@@ -248,8 +374,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f57a680cbf49c84eaebb25191661d9d
-      internalID: -847443715
+      spriteID: 53c97b00b53917948a5eafac3c6e8b9a
+      internalID: 2144290689
       vertices: []
       indices: 
       edges: []
@@ -265,12 +391,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Seedling_1: 2016511062
-      Seedling_2: -1283636295
-      Seedling_0: 917527292
-      Seedling_4: -579639139
-      Seedling_3: -1908460514
-      Seedling_5: -847443715
+      Enemies_2: -1016275787
+      Enemies_3: -753232589
+      Enemies_10: -438112708
+      Enemies_4: 1587753212
+      Enemies_1: 713419925
+      Enemies_0: -1561022716
+      Enemies_5: 607142407
+      Enemies_9: 184959192
+      Enemies_11: 2144290689
+      Enemies_6: 1907811541
+      Enemies_7: 753452987
+      Enemies_8: 928069817
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
