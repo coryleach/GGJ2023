@@ -17,6 +17,9 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private Rigidbody2D _rigidbody2D = null;
 
+    [SerializeField]
+    private Animator anim = null;
+
     private PathNode currentNode = null;
 
     [SyncVar]
@@ -47,19 +50,26 @@ public class EnemyController : NetworkBehaviour
         currentNodePosition = currentNode.Position;
     }
 
-    [ServerCallback]
+
     private void Update()
     {
-        if (currentNode == null)
+        if (isServer)
         {
-            return;
-        }
+            if (currentNode == null)
+            {
+                return;
+            }
 
-        var distSqrd = (currentNode.Position - transform.position).sqrMagnitude;
-        if (distSqrd <= (nextNodeDistance * nextNodeDistance))
+            var distSqrd = (currentNode.Position - transform.position).sqrMagnitude;
+            if (distSqrd <= (nextNodeDistance * nextNodeDistance))
+            {
+                currentNode = currentNode.NextNode();
+                currentNodePosition = currentNode.Position;
+            }
+        }
+        if(anim != null)
         {
-            currentNode = currentNode.NextNode();
-            currentNodePosition = currentNode.Position;
+            anim.SetInteger("WalkCycle", (int)(UnityEngine.Random.value * 2.9999f));
         }
     }
 
