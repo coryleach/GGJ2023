@@ -58,7 +58,7 @@ public class RootsController : NetworkBehaviour
         if(level < 1 && Time.time > plantTime + sproutTimer)
         {
             level++;
-            anim.SetInteger("Level", level);
+            RPCSetAnimInt("Level", level);
         }
         if (weapon == null)
         {
@@ -75,14 +75,25 @@ public class RootsController : NetworkBehaviour
         if (isServer && weapon.IsReady && currentTarget != null)
         {
             weapon.Fire(currentTarget.transform);
-            anim.SetBool("Attacking", true);
+            RPCSetAnimBool("Attacking", true);
         }
         else
         {
-            anim.SetBool("Attacking", false);
+
+            RPCSetAnimBool("Attacking", false);
         }
 
         weapon.Tick();
+    }
+
+    public void RPCSetAnimBool(string tag, bool value)
+    {
+        anim.SetBool(tag, value);
+    }
+
+    public void RPCSetAnimInt(string tag, int value)
+    {
+        anim.SetInteger(tag, value);
     }
 
     private Targetable FindTarget()

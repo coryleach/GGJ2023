@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
     [SerializeField]
     private float speed = 2f;
@@ -17,11 +18,8 @@ public class Projectile : MonoBehaviour
         set => speed = value;
     }
 
-    public Vector2 Direction
-    {
-        get;
-        set;
-    }
+    [SyncVar]
+    public Vector2 Direction = Vector2.zero;
 
     private float t = 0;
 

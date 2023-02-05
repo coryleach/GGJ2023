@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class ProjectileWeapon : MonoBehaviour
+public class ProjectileWeapon : NetworkBehaviour
 {
     [SerializeField]
     private Transform projectileSource = null;
@@ -29,6 +30,7 @@ public class ProjectileWeapon : MonoBehaviour
 
         cooldownTime = cooldown;
         var projecitle = Instantiate(projectilePrefab, projectileSource.position, Quaternion.identity);
+        NetworkServer.Spawn(projecitle.gameObject);
         projecitle.Direction = target.position - projectileSource.position;
     }
 
