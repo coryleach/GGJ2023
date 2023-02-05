@@ -5,7 +5,6 @@ using TMPro;
 
 public class RootsController : NetworkBehaviour
 {
-
     [SerializeField]
     private Targeter targeter;
 
@@ -18,11 +17,14 @@ public class RootsController : NetworkBehaviour
     [SerializeField]
     private Targetable currentTarget = null;
 
+    public int Slot { get; set; }
+
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
     private string owner;
     public string Owner => owner;
 
     [SerializeField] private TMP_Text ownerLabel;
+
 
     [Server]
     public void SetPlayer(PlayerController player)
