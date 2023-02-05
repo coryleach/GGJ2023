@@ -14,7 +14,18 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
     private int slot; //This should be unique for each tree container
 
     private RootsController currentRootsController;
-    public RootsController Current => currentRootsController;
+    public RootsController Current
+    {
+        get => currentRootsController;
+        set
+        {
+            if (currentRootsController != null && currentRootsController != value)
+            {
+                Debug.LogError($"TreeContainer {slot} is already assigned a roots controller");
+            }
+            currentRootsController = value;
+        }
+    }
 
     [SerializeField]
     private GameObject CircleObject;
@@ -39,7 +50,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         return GetContainerForPlayer(username) != null;
     }
 
-    private void Start()
+    private void Awake()
     {
         InstanceCollection.Add(this);
     }
@@ -58,17 +69,19 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         }
 
         Debug.Log("Client Click!");
-        if (PlayerController.localPlayerController == null)
+        var localPlayer = PlayerController.localPlayerController;
+        if (localPlayer == null)
         {
             return;
         }
 
-        if (PlayerOwnsAnyContainer(PlayerController.localPlayerController.Username))
+        if (PlayerOwnsAnyContainer(localPlayer.Username))
         {
             return;
         }
 
-        PlayerController.localPlayerController.SpawnTree(this);
+        localPlayer.SpawnTree(this);
+
         var rend = gameObject.GetComponent<SpriteRenderer>();
         if (CircleObject != null)
         {
@@ -94,7 +107,7 @@ public class TreeContainer : NetworkBehaviour, IPointerClickHandler
         Debug.Log($"TreeContainer: Spawning for player {player.Data.username}!");
         currentRootsController = Instantiate(rootsPrefab);
         currentRootsController.transform.position = transform.position;
-        currentRootsController.Slot = slot;
+        currentRootsController.SetSlot(slot);
         currentRootsController.SetPlayer(player);
         NetworkServer.Spawn(currentRootsController.gameObject);
         spawner.RegisterTree(currentRootsController);
