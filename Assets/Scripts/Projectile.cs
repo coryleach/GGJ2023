@@ -12,6 +12,9 @@ public class Projectile : NetworkBehaviour
     [SerializeField]
     private float lifetime = 1f;
 
+    [SerializeField]
+    private AudioSource Audio;
+
     public float Speed
     {
         get => speed;

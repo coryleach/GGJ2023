@@ -18,6 +18,9 @@ public class RootsController : NetworkBehaviour
     [SerializeField]
     private Targetable currentTarget = null;
 
+    [SerializeField]
+    private AudioSource Audio;
+
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
     private int slot;
 
@@ -29,6 +32,9 @@ public class RootsController : NetworkBehaviour
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
     private string owner;
     public string Owner => owner;
+
+
+    public int Kills = 0;
 
     [SerializeField]
     private TMP_Text ownerLabel;
@@ -92,6 +98,12 @@ public class RootsController : NetworkBehaviour
             level++;
             RPCSetAnimInt("Level", level);
         }
+        else if(level == 1 && Kills >= 20)
+        {
+            level++;
+            RPCSetAnimInt("Level", level);
+        }
+
         if (weapon == null)
         {
             return;
@@ -150,6 +162,11 @@ public class RootsController : NetworkBehaviour
         {
             currentTarget = FindTarget();
         }
+    }
+
+    public void OnEnemyDestroyed(EnemyController enemy)
+    {
+        Kills++;
     }
 
 }

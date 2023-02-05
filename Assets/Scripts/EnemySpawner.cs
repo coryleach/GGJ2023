@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 
 public class EnemySpawner : NetworkBehaviour
 {
@@ -23,6 +24,10 @@ public class EnemySpawner : NetworkBehaviour
     private float delay = 0;
 
     private int spawnCount = 0;
+
+    private List<EnemyController> CurrentEnemies = new List<EnemyController>();
+
+    private List<RootsController> Trees = new List<RootsController>();
 
     private void Start()
     {
@@ -62,12 +67,27 @@ public class EnemySpawner : NetworkBehaviour
             spawnedEnemy.SetPath(firstPathNode);
             spawnedEnemy.OnDestroyed.AddListener(OnEnemyDestroyed);
             spawnCount++;
+            CurrentEnemies.Add(spawnedEnemy);
+            foreach(RootsController tree in Trees)
+            {
+                spawnedEnemy.OnDestroyed.AddListener(tree.OnEnemyDestroyed);
+            }
         }
     }
 
     private void OnEnemyDestroyed(EnemyController enemy)
     {
         spawnCount--;
+        CurrentEnemies.Remove(enemy);
+    }
+
+    public void RegisterTree(RootsController tree)
+    {
+        Trees.Add(tree);
+        foreach(EnemyController enemy in CurrentEnemies)
+        {
+            enemy.OnDestroyed.AddListener(tree.OnEnemyDestroyed);
+        }
     }
 
 }
