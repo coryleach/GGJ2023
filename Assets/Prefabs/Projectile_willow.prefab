@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -8229100043254187459}
   - component: {fileID: -4322508135923390603}
   m_Layer: 8
-  m_Name: Projectile_Pinecone
+  m_Name: Projectile_willow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 4832229067990256627}
   lifetime: 4
   Audio: {fileID: -4322508135923390603}
-  clientSpawnOnDestroy: {fileID: 2732768340586254596, guid: 4e6c4db7b89394915aebc54e946379e1, type: 3}
+  clientSpawnOnDestroy: {fileID: 0}
   Direction: {x: 0, y: 0}
   Target: {x: 0, y: 0}
 --- !u!50 &4832229067990256627
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 3551812783
+  _assetId: 2372583765
   serverOnly: 0
   visible: 2
   hasSpawned: 0
@@ -114,9 +114,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  aoe: 1
+  aoe: 0
   aoeRadius: 1
-  amount: 2
+  amount: 1
   destroyOnHit: 1
   applyOnlyOnce: 1
 --- !u!58 &7543759530417089094
@@ -332,7 +332,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1082452999, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
+  m_Sprite: {fileID: 1375074905, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
