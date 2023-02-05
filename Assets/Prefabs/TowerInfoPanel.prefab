@@ -985,7 +985,7 @@ MonoBehaviour:
   buttonsGroup: {fileID: 2527540197670322140}
   towerInfo: {fileID: 7302479773038508846}
   buildButton: {fileID: 2393301925827108065}
-  killsLabel: {fileID: 3980888673331743003}
+  killsLabel: {fileID: 7129934063338234335}
 --- !u!111 &1828143050582676652
 Animation:
   m_ObjectHideFlags: 0

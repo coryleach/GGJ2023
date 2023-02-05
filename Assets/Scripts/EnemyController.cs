@@ -30,7 +30,10 @@ public class EnemyController : NetworkBehaviour
     [SyncVar]
     public Vector3 currentNodePosition = Vector3.zero;
 
+    [SyncVar(hook = nameof(OnHealthChanged))]
     public int CurrentHealth = 10;
+
+    private static readonly int Hit = Animator.StringToHash("Hit");
 
     public EnemyEvent OnDestroyed { get; } = new EnemyEvent();
 
@@ -44,10 +47,22 @@ public class EnemyController : NetworkBehaviour
         OnDestroyed.Invoke(this);
     }
 
+    private void OnHealthChanged(int oldHealth, int newHealth)
+    {
+        if (oldHealth < newHealth)
+        {
+            return;
+        }
+        //Do some damaged animation
+        anim.SetTrigger(Hit);
+    }
+
     [ServerCallback]
     public void GetHit(int damage)
     {
         CurrentHealth -= damage;
+
+
         if(CurrentHealth <= 0)
         {
             NetworkServer.Destroy(gameObject);
