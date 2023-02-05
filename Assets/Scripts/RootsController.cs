@@ -30,9 +30,9 @@ public class RootsController : NetworkBehaviour
     private string owner;
     public string Owner => owner;
 
-    [SerializeField] private TMP_Text ownerLabel;
 
     public int Kills = 0;
+
     [SerializeField]
     private TMP_Text ownerLabel;
 
