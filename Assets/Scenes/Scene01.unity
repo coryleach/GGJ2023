@@ -740,6 +740,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3295649012284011152, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295649012284011152, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295649012284011152, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295649012284011152, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 540
+      objectReference: {fileID: 0}
     - target: {fileID: 3295649012284011154, guid: cec6c1c7a5109458c9b1cc9baa540225, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1685,6 +1701,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 747472313652501646, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 747472313652501646, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2225963470225165348, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
       propertyPath: m_Name
       value: GameCursor
@@ -1749,10 +1773,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2225963471809499189, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225963471809499189, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2225963471870250678, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8298703862138010199, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298703862138010199, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88adb91a897b4080853aaa03d0f090d, type: 3}
 --- !u!1001 &5427031749497655113
