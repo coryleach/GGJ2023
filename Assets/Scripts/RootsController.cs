@@ -11,6 +11,8 @@ public class RootsController : NetworkBehaviour
 
     [SerializeField] private ProjectileWeapon weapon;
 
+    [SerializeField] private List<Projectile> projectiles = new List<Projectile>();
+
     [SerializeField] private Animator anim = null;
 
     [SerializeField] private Targetable currentTarget = null;
@@ -167,6 +169,10 @@ public class RootsController : NetworkBehaviour
         if (isClient)
         {
             anim.SetInteger("Level", level);
+        }
+        if (projectiles.Count > level)
+        {
+            weapon.projectilePrefab = projectiles[level];
         }
     }
 
