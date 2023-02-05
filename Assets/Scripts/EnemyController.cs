@@ -23,6 +23,8 @@ public class EnemyController : NetworkBehaviour
     [SerializeField]
     private AudioSource Audio;
 
+    public AudioClip stepSound;
+
     private PathNode currentNode = null;
 
     [SyncVar]
@@ -31,6 +33,11 @@ public class EnemyController : NetworkBehaviour
     public int CurrentHealth = 10;
 
     public EnemyEvent OnDestroyed { get; } = new EnemyEvent();
+
+    private void Start()
+    {
+        Audio.pitch = 0.8f + (UnityEngine.Random.value * 0.4f);
+    }
 
     private void OnDestroy()
     {

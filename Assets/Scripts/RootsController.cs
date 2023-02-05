@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Mirror;
 using TMPro;
+using System.Collections.Generic;
 
 public class RootsController : NetworkBehaviour
 {
@@ -20,6 +21,12 @@ public class RootsController : NetworkBehaviour
 
     [SerializeField]
     private AudioSource Audio;
+
+    [SerializeField]
+    private List<AudioClip> shootClips = new List<AudioClip>();
+    
+    [SerializeField]
+    private AudioClip growSound;
 
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
     private int slot;
@@ -97,11 +104,14 @@ public class RootsController : NetworkBehaviour
         {
             level++;
             RPCSetAnimInt("Level", level);
+            RPCPlayGrowSound();
         }
         else if(level == 1 && Kills >= 20)
         {
             level++;
             RPCSetAnimInt("Level", level);
+            RPCPlayGrowSound();
+            weapon.cooldown *= 0.7f;
         }
 
         if (weapon == null)
@@ -120,6 +130,8 @@ public class RootsController : NetworkBehaviour
         {
             weapon.Fire(currentTarget.transform);
             RPCSetAnimBool("Attacking", true);
+            RPCPlayAttackSound();
+
         }
         else if (isServer && anim.GetBool("Attacking"))
         {
@@ -128,6 +140,24 @@ public class RootsController : NetworkBehaviour
         }
 
         weapon.Tick();
+    }
+
+    [ClientRpc]
+    public void RPCPlayAttackSound()
+    {
+        if (shootClips.Count > level)
+        {
+            Audio.PlayOneShot(shootClips[level]);
+        }
+    }
+
+    [ClientRpc]
+    public void RPCPlayGrowSound()
+    {
+        if (shootClips.Count > level)
+        {
+            Audio.PlayOneShot(growSound);
+        }
     }
 
     [ClientRpc]

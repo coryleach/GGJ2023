@@ -177,6 +177,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 6956493513768594832}
   anim: {fileID: 7736860561369484539}
   Audio: {fileID: -7638827787344725115}
+  stepSound: {fileID: 8300000, guid: de308267d89c8ae49b6bcbc257135590, type: 3}
   currentNodePosition: {x: 0, y: 0, z: 0}
   CurrentHealth: 10
 --- !u!50 &6956493513768594832
@@ -283,11 +284,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: de308267d89c8ae49b6bcbc257135590, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.397
+  m_Volume: 0.084
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
