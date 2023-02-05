@@ -110,6 +110,8 @@ MonoBehaviour:
   - {fileID: 4832229067990256590, guid: e8b7d295f8b93468f87b72dedcd6ed4c, type: 3}
   - {fileID: 4832229067990256590, guid: 1035fe3ed66482443820c5448009d506, type: 3}
   - {fileID: 4832229067990256590, guid: 3dc2817d217801f459cacf318d126cec, type: 3}
+  - {fileID: 4832229067990256590, guid: 0ed29a91299e742d7b1a3b2120a3cbfd, type: 3}
+  - {fileID: 4832229067990256590, guid: b7e1dbed969c64177aaaab9da4bbe99d, type: 3}
   timeInterpolationGui: 0
 --- !u!114 &8504326909143740506
 MonoBehaviour:

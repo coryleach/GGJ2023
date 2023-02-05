@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 7063597644828017733}
   - component: {fileID: 4832229067990256627}
   - component: {fileID: 6859310765473150753}
-  - component: {fileID: 8264419350763487609}
   - component: {fileID: 7543759530417089094}
   - component: {fileID: -8229100043254187459}
   - component: {fileID: -4322508135923390603}
+  - component: {fileID: -4957776124823187253}
+  - component: {fileID: -4350761806756313884}
   m_Layer: 8
-  m_Name: Projectile_Arc_Bomb
+  m_Name: Projectile_Arc_Bomb_SlowMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +60,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 4832229067990256627}
   lifetime: 0.1
   Audio: {fileID: -4322508135923390603}
-  clientSpawnOnDestroy: {fileID: 2732768340586254596, guid: 4e6c4db7b89394915aebc54e946379e1, type: 3}
+  clientSpawnOnDestroy: {fileID: 2732768340586254596, guid: 999a4ea10378a46c5b1cab07e8e550aa, type: 3}
   Direction: {x: 0, y: 0}
   Target: {x: 0, y: 0}
   shadow: {fileID: 8557935907520326505}
@@ -98,30 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1312851720
+  _assetId: 2786003540
   serverOnly: 0
   visible: 2
   hasSpawned: 0
---- !u!114 &8264419350763487609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4832229067990256590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06711449b61764ff8ac8363255deb789, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  aoe: 1
-  aoeRadius: 2
-  amount: 2
-  destroyOnHit: 1
-  applyOnlyOnce: 1
 --- !u!58 &7543759530417089094
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,6 +243,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4957776124823187253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4832229067990256590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938fc23422fce4613834261eb31d9c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aoe: 1
+  aoeRadius: 2
+  amount: 0.5
+  duration: 1
+  destroyOnHit: 0
+  applyOnlyOnce: 1
+--- !u!114 &-4350761806756313884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4832229067990256590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06711449b61764ff8ac8363255deb789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  aoe: 1
+  aoeRadius: 2
+  amount: 1
+  destroyOnHit: 1
+  applyOnlyOnce: 1
 --- !u!1 &8554660507882900986
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +354,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 731653522, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
+  m_Sprite: {fileID: 623228568, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
