@@ -928,7 +928,7 @@ MonoBehaviour:
   syncInterval: 0.1
   projectileSource: {fileID: 6319150154037705553}
   cooldown: 1
-  projectilePrefab: {fileID: 7063597644828017733, guid: e8b7d295f8b93468f87b72dedcd6ed4c, type: 3}
+  projectilePrefab: {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
 --- !u!114 &5078286367693980382
 MonoBehaviour:
   m_ObjectHideFlags: 0
