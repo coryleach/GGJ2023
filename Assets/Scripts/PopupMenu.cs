@@ -15,6 +15,8 @@ public class PopupMenu : MonoBehaviour
 
     [SerializeField] private Button buildButton;
 
+    [SerializeField] private TMP_Text killsLabel;
+
     private TreeContainer _treeContainer = null;
 
     private void Awake()
@@ -25,37 +27,65 @@ public class PopupMenu : MonoBehaviour
 
     private void Start()
     {
-        GameCursor.Instance.SelectionChanged.AddListener(() =>
-        {
-            Refresh(GameCursor.Instance.Selected);
-        });
+        GameCursor.Instance.SelectionChanged.AddListener(() => { RefreshWithContainer(GameCursor.Instance.Selected); });
     }
 
-    public void Refresh(TreeContainer treeContainer)
+    private void SetCurrentTreeContainer(TreeContainer treeContainer)
     {
+        if (_treeContainer != null && _treeContainer.Current != null)
+        {
+            _treeContainer.Current.OnValueChanged.RemoveListener(RefreshCurrent);
+        }
+
         _treeContainer = treeContainer;
 
-        if (treeContainer == null)
+        if (_treeContainer != null && _treeContainer.Current != null)
+        {
+            _treeContainer.Current.OnValueChanged.AddListener(RefreshCurrent);
+        }
+    }
+
+    private void RefreshCurrent()
+    {
+        Refresh(false);
+    }
+
+    private void Refresh(bool animate = true)
+    {
+        if (_treeContainer == null)
         {
             panelAnimation.Play("InfoPanelHide");
             return;
         }
 
         content.SetActive(true);
-        panelAnimation.Play("InfoPanelShow");
 
-        if (treeContainer.Current == null)
+        if (animate)
         {
-            towerInfo.text = $"Empty Plot {treeContainer.Slot+1}";
+            panelAnimation.Play("InfoPanelShow");
+        }
+
+        if (_treeContainer.Current == null)
+        {
+            towerInfo.text = $"Empty Plot {_treeContainer.Slot + 1}";
         }
         else
         {
-            towerInfo.text = $"{treeContainer.Current.Owner}'s Tree";
+            towerInfo.text = $"{_treeContainer.Current.Owner}'s Tree";
         }
 
         var localPlayer = PlayerController.localPlayerController;
-        buildButton.gameObject.SetActive(treeContainer.Current == null);
+        buildButton.gameObject.SetActive(_treeContainer.Current == null);
         buildButton.interactable = !TreeContainer.PlayerOwnsAnyContainer(localPlayer.Username);
+
+        killsLabel.transform.parent.gameObject.SetActive(_treeContainer.Current != null);
+        killsLabel.text = (_treeContainer.Current != null) ? $"{_treeContainer.Current.Kills}" : "";
+    }
+
+    public void RefreshWithContainer(TreeContainer treeContainer)
+    {
+        SetCurrentTreeContainer(treeContainer);
+        Refresh(true);
     }
 
     private void Build()
@@ -65,5 +95,4 @@ public class PopupMenu : MonoBehaviour
             GameCursor.Instance.Select(null);
         }
     }
-
 }

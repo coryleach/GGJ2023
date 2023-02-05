@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class RootsController : NetworkBehaviour
 {
@@ -24,23 +25,22 @@ public class RootsController : NetworkBehaviour
 
     [SerializeField]
     private List<AudioClip> shootClips = new List<AudioClip>();
-    
+
     [SerializeField]
     private AudioClip growSound;
 
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
-    private int slot;
+    private int slot = -1;
 
-    public int Slot
-    {
-        get => slot;
-    }
+    public int Slot => slot;
 
     [SyncVar(hook = nameof(OnOwnerChanged)), SerializeField]
     private string owner;
     public string Owner => owner;
 
-    [SyncVar]
+    public UnityEvent OnValueChanged { get; } = new UnityEvent();
+
+    [SyncVar(hook = nameof(OnKillsChanged))]
     public int Kills = 0;
 
     [SyncVar]
@@ -59,6 +59,11 @@ public class RootsController : NetworkBehaviour
     public void SetSlot(int slot)
     {
         this.slot = slot;
+    }
+
+    private void OnKillsChanged(int oldValue, int newValue)
+    {
+        OnValueChanged.Invoke();
     }
 
     private async void OnSlotChanged(int oldValue, int newValue)
@@ -93,6 +98,17 @@ public class RootsController : NetworkBehaviour
         plantTime = Time.time;
         targeter.OnTargetLost.AddListener(TargetRemoved);
         targeter.OnTargetAdded.AddListener(TargetAdded);
+
+        //Check if we have a non-negative slot number on start
+        //There is an edge case on instantiate where we might not get the slot number changed hook
+        if (isClient && slot != -1)
+        {
+            var container = TreeContainer.GetSlot(slot);
+            if (container.Current == null)
+            {
+                container.Current = this;
+            }
+        }
     }
 
     private void OnDestroy()
@@ -134,11 +150,9 @@ public class RootsController : NetworkBehaviour
             weapon.Fire(currentTarget.transform);
             RPCSetAnimBool("Attacking", true);
             RPCPlayAttackSound();
-
         }
         else if (isServer && anim.GetBool("Attacking"))
         {
-
             RPCSetAnimBool("Attacking", false);
         }
 

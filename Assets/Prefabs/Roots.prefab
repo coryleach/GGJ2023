@@ -889,7 +889,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e5f903da2b2d3df4680772c9483e65b7, type: 3}
   - {fileID: 8300000, guid: 3cc334cd3583f11418ab97b8c732cdd0, type: 3}
   growSound: {fileID: 8300000, guid: fcfbd484beda18647a3ca2dd8a3184ef, type: 3}
-  slot: 0
+  slot: -1
   owner: 
   Kills: 0
   ownerLabel: {fileID: 5440765160265906292}
