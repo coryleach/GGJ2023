@@ -113,6 +113,10 @@ public class ServerGameManager : NetworkBehaviour
                 NetworkServer.Destroy(tree.gameObject);
             }
         }
+        if(Trees.Count < 1)
+        {
+            EnemyController.DeadMushrooms = 0f;
+        }
     }
 
     public void RegisterTree(RootsController tree)

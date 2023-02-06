@@ -27,6 +27,8 @@ public class EnemyController : NetworkBehaviour
 
     private PathNode currentNode = null;
 
+    public static float DeadMushrooms = 0;
+
     [SyncVar]
     public Vector3 currentNodePosition = Vector3.zero;
 
@@ -39,6 +41,7 @@ public class EnemyController : NetworkBehaviour
 
     private void Start()
     {
+        CurrentHealth += (int)Mathf.Log(DeadMushrooms);
         Audio.pitch = 0.8f + (UnityEngine.Random.value * 0.4f);
     }
 
