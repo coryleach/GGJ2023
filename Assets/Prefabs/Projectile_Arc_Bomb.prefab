@@ -119,7 +119,7 @@ MonoBehaviour:
   syncInterval: 0.1
   aoe: 1
   aoeRadius: 2
-  amount: 2
+  amount: 20
   destroyOnHit: 1
   applyOnlyOnce: 1
 --- !u!58 &7543759530417089094

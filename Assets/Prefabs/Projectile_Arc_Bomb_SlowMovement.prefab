@@ -278,7 +278,7 @@ MonoBehaviour:
   syncInterval: 0.1
   aoe: 1
   aoeRadius: 2
-  amount: 1
+  amount: 10
   destroyOnHit: 1
   applyOnlyOnce: 1
 --- !u!1 &8554660507882900986
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 623228568, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
+  m_Sprite: {fileID: 79615021, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

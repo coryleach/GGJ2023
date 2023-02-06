@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -8229100043254187459}
   - component: {fileID: -4322508135923390603}
   m_Layer: 8
-  m_Name: Projectile
+  m_Name: Projectile_willow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 304931604
+  _assetId: 2372583765
   serverOnly: 0
   visible: 2
   hasSpawned: 0
@@ -332,7 +332,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1090341994, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
+  m_Sprite: {fileID: 1375074905, guid: 62af94adb248b4260831f3c88edc7356, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

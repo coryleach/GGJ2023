@@ -885,7 +885,7 @@ MonoBehaviour:
   - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
   - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
   - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
-  - {fileID: 4832229067990256589, guid: 2772f0627a8644ac3bf8c9f7cb913b86, type: 3}
+  - {fileID: 4832229067990256589, guid: a497013fc8116474d9a7a39ea2af2ad3, type: 3}
   - {fileID: 7063597644828017733, guid: e8b7d295f8b93468f87b72dedcd6ed4c, type: 3}
   - {fileID: 7063597644828017733, guid: 0ed29a91299e742d7b1a3b2120a3cbfd, type: 3}
   - {fileID: 4832229067990256589, guid: 1035fe3ed66482443820c5448009d506, type: 3}
@@ -906,6 +906,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b078479be239b44299ab9a40e70007a8, type: 3}
   - {fileID: 8300000, guid: 83ca89b28f1bc4cf6971869b238564f2, type: 3}
   - {fileID: 8300000, guid: ecae626667372414aab8452dc7a9eb57, type: 3}
+  attackSpeeds:
+  - 0.5
+  - 0.45
+  - 0.4
+  - 0.25
+  - 1
+  - 0.5
+  - 0.4
+  - 1
+  - 0.5
+  - 0.5
   growSound: {fileID: 8300000, guid: fcfbd484beda18647a3ca2dd8a3184ef, type: 3}
   slot: -1
   owner: 
