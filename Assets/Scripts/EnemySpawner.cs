@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemySpawner : NetworkBehaviour
 {
     [SerializeField]
-    private EnemyController enemyPrefab;
+    private EnemyController[] enemyPrefabs;
 
     [SerializeField]
     private PathNode[] sourcePathNodes;
@@ -62,6 +62,7 @@ public class EnemySpawner : NetworkBehaviour
         if (NetworkServer.active)
         {
             var firstPathNode = sourcePathNodes[Random.Range(0,sourcePathNodes.Length)];
+            var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
             NetworkServer.Spawn(spawnedEnemy.gameObject);
             var controller = spawnedEnemy.GetComponent<EnemyController>();
