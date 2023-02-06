@@ -8,7 +8,7 @@ public class EnemySpawner : NetworkBehaviour
     private EnemyController enemyPrefab;
 
     [SerializeField]
-    private PathNode firstPathNode;
+    private PathNode[] sourcePathNodes;
 
     [SerializeField]
     private float startDelay = 5f;
@@ -61,6 +61,7 @@ public class EnemySpawner : NetworkBehaviour
         //Only spawn enemies if the Network Server is up and running
         if (NetworkServer.active)
         {
+            var firstPathNode = sourcePathNodes[Random.Range(0,sourcePathNodes.Length)];
             var spawnedEnemy = Instantiate(enemyPrefab, firstPathNode.Position, Quaternion.identity);
             NetworkServer.Spawn(spawnedEnemy.gameObject);
             var controller = spawnedEnemy.GetComponent<EnemyController>();
