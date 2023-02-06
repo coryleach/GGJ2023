@@ -78,6 +78,7 @@ public class EnemySpawner : NetworkBehaviour
 
     private void OnEnemyDestroyed(EnemyController enemy)
     {
+        EnemyController.DeadMushrooms++;
         spawnCount--;
         CurrentEnemies.Remove(enemy);
     }
