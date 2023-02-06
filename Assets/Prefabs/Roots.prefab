@@ -906,6 +906,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b078479be239b44299ab9a40e70007a8, type: 3}
   - {fileID: 8300000, guid: 83ca89b28f1bc4cf6971869b238564f2, type: 3}
   - {fileID: 8300000, guid: ecae626667372414aab8452dc7a9eb57, type: 3}
+  attackSpeeds:
+  - 0.5
+  - 0.45
+  - 0.4
+  - 0.25
+  - 1
+  - 0.5
+  - 0.4
+  - 1
+  - 0.5
+  - 0.5
   growSound: {fileID: 8300000, guid: fcfbd484beda18647a3ca2dd8a3184ef, type: 3}
   slot: -1
   owner: 

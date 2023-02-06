@@ -59,7 +59,9 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 4832229067990256627}
   lifetime: 4
   Audio: {fileID: -4322508135923390603}
+  clientSpawnOnDestroy: {fileID: 0}
   Direction: {x: 0, y: 0}
+  Target: {x: 0, y: 0}
 --- !u!50 &4832229067990256627
 Rigidbody2D:
   serializedVersion: 4
@@ -115,6 +117,7 @@ MonoBehaviour:
   amount: 0.5
   duration: 1
   destroyOnHit: 0
+  applyOnlyOnce: 1
 --- !u!114 &8264419350763487609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,8 +135,9 @@ MonoBehaviour:
   syncInterval: 0.1
   aoe: 0
   aoeRadius: 1
-  amount: 1
+  amount: 10
   destroyOnHit: 1
+  applyOnlyOnce: 1
 --- !u!58 &7543759530417089094
 CircleCollider2D:
   m_ObjectHideFlags: 0

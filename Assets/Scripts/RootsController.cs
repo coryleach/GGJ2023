@@ -21,6 +21,8 @@ public class RootsController : NetworkBehaviour
 
     [SerializeField] private List<AudioClip> shootClips = new List<AudioClip>();
 
+    [SerializeField] private List<float> attackSpeeds = new List<float>();
+
     [SerializeField] private AudioClip growSound;
 
     [SyncVar(hook = nameof(OnSlotChanged)), SerializeField]
@@ -138,7 +140,6 @@ public class RootsController : NetworkBehaviour
                 level++;
                 RPCSetAnimInt("Level", level);
                 RPCPlayGrowSound();
-                weapon.cooldown *= 0.7f;
             }
         }
 
@@ -173,6 +174,10 @@ public class RootsController : NetworkBehaviour
         if (projectiles.Count > level)
         {
             weapon.projectilePrefab = projectiles[level];
+        }
+        if(attackSpeeds.Count > level)
+        {
+            weapon.cooldown = attackSpeeds[level];
         }
     }
 

@@ -179,7 +179,7 @@ MonoBehaviour:
   Audio: {fileID: -7638827787344725115}
   stepSound: {fileID: 8300000, guid: de308267d89c8ae49b6bcbc257135590, type: 3}
   currentNodePosition: {x: 0, y: 0, z: 0}
-  CurrentHealth: 10
+  CurrentHealth: 80
 --- !u!50 &6956493513768594832
 Rigidbody2D:
   serializedVersion: 4

@@ -116,7 +116,7 @@ MonoBehaviour:
   syncInterval: 0.1
   aoe: 0
   aoeRadius: 1
-  amount: 1
+  amount: 10
   destroyOnHit: 1
   applyOnlyOnce: 1
 --- !u!58 &7543759530417089094
