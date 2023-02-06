@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -52,8 +53,15 @@ public class Targeter : MonoBehaviour
     {
         float minDistance = float.MaxValue;
         Targetable closest = null;
+        bool clearNulls = false;
         foreach (var target in _targets)
         {
+            if (target == null)
+            {
+                clearNulls = true;
+                continue;
+            }
+
             var dist = (target.transform.position - pt).sqrMagnitude;
             if (dist < minDistance)
             {
@@ -61,6 +69,12 @@ public class Targeter : MonoBehaviour
                 minDistance = dist;
             }
         }
+
+        if (clearNulls)
+        {
+            _targets = _targets.Where(x => x != null).ToList();
+        }
+
         return closest;
     }
 
