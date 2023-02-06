@@ -35594,7 +35594,7 @@ MonoBehaviour:
   - {fileID: 1073224889}
   startDelay: 1
   spawnInterval: 1
-  maxSpawns: 50
+  maxSpawns: 20
 --- !u!4 &1699242090
 Transform:
   m_ObjectHideFlags: 0
